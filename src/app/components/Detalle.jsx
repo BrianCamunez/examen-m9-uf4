@@ -26,6 +26,11 @@ const Detalle = (id) => {
         }
     },[id.id]);
 
+    if (!pelicula) {
+        return <div className="text-white">Cargando detalles de la película...</div>;
+    }
+
+
     return (
         <div className="text-white">
             <img src={`https://image.tmdb.org/t/p/w500${pelicula.backdrop_path
@@ -56,15 +61,9 @@ const Detalle = (id) => {
                 </div>
                 
             </div>
-            <h2 className='py-3 font-bold'>Reparto</h2>
+            <h2 className='py-3'>Reparto</h2>
             <div className="grid grid-cols-4 gap-4">
-                {pelicula.credits && pelicula.credits.cast.slice(0, 4).map((actor) => (
-                    <div key={actor.id} className="text-center">
-                        <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={actor.name} className="w-full h-100 object-cover rounded-md mb-2" />
-                        <h4 className='font-bold'>{actor.name}</h4>
-                        <p>{actor.character}</p>
-                    </div>
-                ))}
+               
 
             </div>
         </div>
