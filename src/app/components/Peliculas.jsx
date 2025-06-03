@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const Peliculas = () => {
+const Peliculas = (idPelicula) => {
 
 
     const [peliculasFetch, setPeliculasFetch] = useState([]);
@@ -16,7 +16,6 @@ const Peliculas = () => {
 
                 setPeliculasFetch(data.results);
 
-                console.log('Películas obtenidas:', data.results);
                
             } catch (error) {
                 console.error('Error fetching movies:', error);
@@ -30,7 +29,7 @@ const Peliculas = () => {
     return (
         <div className='grid grid-cols-3 gap-4'>
             {peliculasFetch.map((pelicula) => (
-                <div key={pelicula.id} className=' border-1 p-1 text-white'>
+                <div key={pelicula.id} className=' border-1 p-1 text-white' onClick={() => idPelicula.pasarId(pelicula.id)}>
                     <img src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`} alt={pelicula.title} className='w-full h-100 object-cover rounded-md mb-2' />
                     <h4 className='font-bold'>{pelicula.title}</h4>
                 </div>
